@@ -1,0 +1,42 @@
+name: Integration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, 'skip_ci')"
+
+    runs-on: ubuntu-latest
+
+    name: Build docker images
+    steps:
+      - name: Checkout plug
+        uses: actions/checkout@v2
+        with:
+          path: plug
+
+      - name: Checkout PowerSimData
+        uses: actions/checkout@v2
+        with:
+          repository: Breakthrough-Energy/PowerSimData
+          token: ${{ secrets.CI_TOKEN_CLONE_REPO }}
+          path: PowerSimData
+
+      - name: Checkout REISE.jl
+        uses: actions/checkout@v2
+        with:
+          repository: Breakthrough-Energy/REISE.jl
+          token: ${{ secrets.CI_TOKEN_CLONE_REPO }}
+          path: REISE.jl
+
+      - run: docker build . -t powersimdata:latest
+        working-directory: PowerSimData
+
+      - run: docker build . -t reisejl:latest
+        working-directory: REISE.jl
