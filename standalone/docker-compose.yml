@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  powersimdata:
+    container_name: powersimdata
+    build:
+      context: ../../PowerSimData
+    image: powersimdata:latest
+    entrypoint: bash
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+      - cemdata:/mnt/bes/pcm
+    environment:
+      - BE_SERVER_ADDRESS=reisejl
+      - DEPLOYMENT_MODE=1
+  reisejl:
+    container_name: reisejl
+    build:
+      context: ../../REISE.jl
+    image: reisejl:latest
+    ports:
+      - "80:5000"
+    volumes:
+      - cemdata:/mnt/bes/pcm
+      # - $PWD/GUROBI.LIC:/usr/share/gurobi_license/gurobi.lic
+volumes:
+  cemdata:
