@@ -11,6 +11,7 @@ services:
     tty: true        # docker run -t
     volumes:
       - cemdata:/mnt/bes/pcm
+      - ../raw:/mnt/bes/pcm/raw
     environment:
       - BE_SERVER_ADDRESS=reisejl
       - DEPLOYMENT_MODE=1
@@ -23,6 +24,7 @@ services:
       - "80:5000"
     volumes:
       - cemdata:/mnt/bes/pcm
-      # - $PWD/GUROBI.LIC:/usr/share/gurobi_license/gurobi.lic
+      - ../raw:/mnt/bes/pcm/raw
+      - ./gurobi.lic:/usr/share/gurobi_license/gurobi.lic
 volumes:
   cemdata:
