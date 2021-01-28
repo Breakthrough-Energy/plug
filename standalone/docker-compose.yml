@@ -3,6 +3,7 @@ version: '3.7'
 services:
   powersimdata:
     container_name: powersimdata
+    hostname: powersimdata
     build:
       context: ../../PowerSimData
     image: powersimdata:latest
@@ -17,6 +18,7 @@ services:
       - DEPLOYMENT_MODE=1
   reisejl:
     container_name: reisejl
+    hostname: reisejl
     build:
       context: ../../REISE.jl
     image: reisejl:latest
@@ -25,6 +27,6 @@ services:
     volumes:
       - cemdata:/mnt/bes/pcm
       - ../raw:/mnt/bes/pcm/raw
-      - ./gurobi.lic:/usr/share/gurobi_license/gurobi.lic
+      - ../gurobi.lic:/usr/share/gurobi_license/gurobi.lic
 volumes:
   cemdata:
