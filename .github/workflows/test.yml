@@ -13,7 +13,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    name: Build docker images
+    name: End to end tests
     steps:
       - name: Checkout plug
         uses: actions/checkout@v2

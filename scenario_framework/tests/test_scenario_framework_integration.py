@@ -105,7 +105,9 @@ def test_create_and_upload_Texas_scenario():
     scenario.state.builder.change_table.add_bus(
         [{"lat": 30, "lon": -95, "zone_id": 308}]
     )
-    scenario.state.builder.change_table.add_storage_capacity(bus_id={new_bus_id: 100})
+    scenario.state.builder.change_table.add_storage_capacity(
+        [{"bus_id": int(new_bus_id), "capacity": 100}]
+    )
     scenario.state.builder.change_table.add_plant(
         [{"type": "wind", "bus_id": new_bus_id, "Pmax": 400}]
     )
