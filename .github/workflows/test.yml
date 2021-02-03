@@ -2,8 +2,7 @@ name: Integration
 
 on:
   push:
-    branches:
-      - main
+
   pull_request:
     branches:
       - main
@@ -28,15 +27,28 @@ jobs:
           token: ${{ secrets.CI_TOKEN_CLONE_REPO }}
           path: PowerSimData
 
-      - name: Checkout REISE.jl
-        uses: actions/checkout@v2
-        with:
-          repository: Breakthrough-Energy/REISE.jl
-          token: ${{ secrets.CI_TOKEN_CLONE_REPO }}
-          path: REISE.jl
+      # - name: Checkout REISE.jl
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: Breakthrough-Energy/REISE.jl
+      #     token: ${{ secrets.CI_TOKEN_CLONE_REPO }}
+      #     path: REISE.jl
 
       - run: docker build . -t powersimdata:latest
         working-directory: PowerSimData
+        
+      - run: docker build . -t scenario_server:latest
+        working-directory: plug/scenario_framework
 
-      - run: docker build . -t reisejl:latest
-        working-directory: REISE.jl
+      # - run: docker build . -t reisejl:latest
+      #   working-directory: REISE.jl
+
+      - name: Start containers
+        run: |
+          docker-compose up -d
+          sleep 10
+        working-directory: plug/scenario_framework
+        env: 
+          BE_SERVER_USER: octocat
+
+      - run: docker exec scenario_client bash -c 'pytest -m "not db"'
