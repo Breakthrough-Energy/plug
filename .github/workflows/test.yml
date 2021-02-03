@@ -34,14 +34,8 @@ jobs:
       #     token: ${{ secrets.CI_TOKEN_CLONE_REPO }}
       #     path: REISE.jl
 
-      - run: docker build . -t powersimdata:latest
-        working-directory: PowerSimData
-        
-      - run: docker build . -t scenario_server:latest
+      - run: docker-compose build
         working-directory: plug/scenario_framework
-
-      # - run: docker build . -t reisejl:latest
-      #   working-directory: REISE.jl
 
       - name: Start containers
         run: |

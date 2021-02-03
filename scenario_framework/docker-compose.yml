@@ -17,19 +17,20 @@ services:
     tty: true        # docker run -t
     volumes:
       - cemdata:/mnt/bes/pcm
-      - $PWD/ssh_github_action/:/root/.ssh
+      - $PWD/ssh:/root/.ssh
       - $PWD/tests:/app/tests
   scenario_server:
     container_name: scenario_server
     hostname: scenario_server
     build:
-      context: .
+      context: ..
+      dockerfile: scenario_framework/Dockerfile
     image: scenario_server:latest
     networks:
       - cemnet
     tty: true
     volumes:
-      - $PWD/ssh_github_action/id_rsa.pub:/pub_key/id_rsa.pub:ro # path to ssh public key
+      - $PWD/ssh/id_rsa.pub:/pub_key/id_rsa.pub:ro # path to ssh public key
     environment:
       - USER_NAME=${BE_SERVER_USER}
       - PUBLIC_KEY_FILE=/pub_key/id_rsa.pub # ssh public key in container
