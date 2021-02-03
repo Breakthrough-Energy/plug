@@ -30,3 +30,23 @@ Optionally, to snapshot the results to a tar archive, run
 ```
 docker cp powersimdata:/mnt/bes/pcm - > FILENAME.tar
 ```
+
+### Client/server architecture
+
+The contents of the `scenario_framework` folder are provided to mirror the client server
+architecture used internally and enable reproducible testing in that
+environment. Note: this is not currently recommended for general research
+purposes, however developers who wish to run integration tests without access
+to the server may find this useful.
+
+The basic operation is similar to standalone mode described earlier. First `cd`
+to the `scenario_framework` directory, which has the compose file for this
+environment. The integration tests can be run using the following:
+
+```
+docker-compose up -d
+docker exec scenario_client bash -c 'pytest -m "not db"'
+```
+
+In addition to the test suite from powersimdata, this will run the tests
+provided here, which demonstrate typical user workflows. 

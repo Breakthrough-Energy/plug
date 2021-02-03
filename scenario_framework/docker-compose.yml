@@ -7,12 +7,10 @@ services:
     build:
       context: ../../PowerSimData
     environment: 
-      - BE_SERVER_USER=${BE_SERVER_USER}
+      - BE_SERVER_USER=${BE_SERVER_USER:-foo}
       - BE_SERVER_ADDRESS=scenario_server
       - BE_SERVER_SSH_PORT=2222
     image: powersimdata:latest
-    networks:
-      - cemnet
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     volumes:
@@ -26,13 +24,11 @@ services:
       context: ..
       dockerfile: scenario_framework/Dockerfile
     image: scenario_server:latest
-    networks:
-      - cemnet
     tty: true
     volumes:
       - $PWD/ssh/id_rsa.pub:/pub_key/id_rsa.pub:ro # path to ssh public key
     environment:
-      - USER_NAME=${BE_SERVER_USER}
+      - USER_NAME=${BE_SERVER_USER:-foo}
       - PUBLIC_KEY_FILE=/pub_key/id_rsa.pub # ssh public key in container
       - SUDO_ACCESS=false
       - PASSWORD_ACCESS=false
@@ -43,15 +39,10 @@ services:
   #   build:
   #     context: ../../REISE.jl
   #   image: reisejl:latest
-  #   networks:
-  #     - cemnet
   #   ports:
   #     - "80:5000"
   #   volumes:
   #     - cemdata:/mnt/bes/pcm
-  #     - $PWD/GUROBI.LIC:/usr/share/gurobi_license
-
-networks:
-  cemnet:
+  #     - ../gurobi.lic:/usr/share/gurobi_license/gurobi.lic
 volumes:
   cemdata:
