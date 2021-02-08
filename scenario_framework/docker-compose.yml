@@ -14,7 +14,7 @@ services:
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     volumes:
-      - cemdata:/mnt/bes/pcm
+      - scenario_data:/mnt/bes/pcm
       - $PWD/ssh:/root/.ssh
       - $PWD/tests:/app/tests
   scenario_server:
@@ -42,7 +42,7 @@ services:
   #   ports:
   #     - "80:5000"
   #   volumes:
-  #     - cemdata:/mnt/bes/pcm
+  #     - scenario_data:/mnt/bes/pcm
   #     - ../gurobi.lic:/usr/share/gurobi_license/gurobi.lic
 volumes:
-  cemdata:
+  scenario_data:
