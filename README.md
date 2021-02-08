@@ -14,8 +14,34 @@ computer. To get started, run `cd standalone` in your shell, followed by
 docker-compose exec powersimdata ipython
 ```
 
-See the powersimdata [readme](https://github.com/Breakthrough-Energy/PowerSimData) for details 
+See the PowerSimData [readme](https://github.com/Breakthrough-Energy/PowerSimData) for details 
 about how to run a simulation, or try the commands in `demo.py` for a simple example.
+
+The usage within the containerized setup is almost identical to what is
+presented in the PowerSimData repo, but there are some small differences. 
+
+1) When calling `scenario.state.launch_simulation()`, the process is launched
+via http rather than ssh, and we provide a container specific way to query the
+status. This can be done using `scenario.state.check_progress()` which will
+return some output in the following form.
+
+```json
+{'errors': [],
+ 'output': ['Validation complete!',
+  'Launching scenario with parameters:',
+  "{'interval': 24, 'n_interval': 2, 'start_index': 5113, 'input_dir': '/mnt/bes/pcm/tmp/scenario_1', 'execute_dir': '/mnt/bes/pcm/tmp/scenario_1/output', 'threads': None}"],
+ 'scenario_id': 1,
+ 'status': 'running'}
+```
+
+Note that the `errors/output` fields correspond to lines of
+`stderr/stdout`, respectively.
+
+2) Once the simulation is complete, the results are extracted automatically, so
+there is no need to call `scenario.state.extract_simulation_output()` (although
+doing so will simply print a warning). The data can be accessed from the
+`Analyze` state within the container, but if you have a use case that is not
+yet supported, the data can be detached from docker, which we describe below.
 
 ### Extracting data
 Currently, the simplest way to access simulation output is by copying the
