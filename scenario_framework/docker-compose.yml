@@ -6,10 +6,8 @@ services:
     hostname: scenario_client
     build:
       context: ../../PowerSimData
-    environment: 
-      - BE_SERVER_USER=${BE_SERVER_USER:-foo}
-      - BE_SERVER_ADDRESS=scenario_server
-      - BE_SERVER_SSH_PORT=2222
+    env_file:
+      - client.env
     image: powersimdata:latest
     stdin_open: true # docker run -i
     tty: true        # docker run -t
@@ -27,11 +25,8 @@ services:
     tty: true
     volumes:
       - ./ssh/id_rsa.pub:/pub_key/id_rsa.pub:ro # path to ssh public key
-    environment:
-      - USER_NAME=${BE_SERVER_USER:-foo}
-      - PUBLIC_KEY_FILE=/pub_key/id_rsa.pub # ssh public key in container
-      - SUDO_ACCESS=false
-      - PASSWORD_ACCESS=false
+    env_file:
+      - server.env
     restart: "unless-stopped"
   # reisejl:
   #   container_name: reisejl

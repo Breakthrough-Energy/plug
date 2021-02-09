@@ -42,7 +42,5 @@ jobs:
           docker-compose up -d
           sleep 10
         working-directory: plug/scenario_framework
-        env: 
-          BE_SERVER_USER: octocat
 
       - run: docker exec scenario_client bash -c 'pytest -m "not db"'
