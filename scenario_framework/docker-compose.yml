@@ -15,8 +15,8 @@ services:
     tty: true        # docker run -t
     volumes:
       - scenario_data:/mnt/bes/pcm
-      - $PWD/ssh:/root/.ssh
-      - $PWD/tests:/app/tests
+      - ./ssh:/root/.ssh
+      - ./tests:/app/tests
   scenario_server:
     container_name: scenario_server
     hostname: scenario_server
@@ -26,7 +26,7 @@ services:
     image: scenario_server:latest
     tty: true
     volumes:
-      - $PWD/ssh/id_rsa.pub:/pub_key/id_rsa.pub:ro # path to ssh public key
+      - ./ssh/id_rsa.pub:/pub_key/id_rsa.pub:ro # path to ssh public key
     environment:
       - USER_NAME=${BE_SERVER_USER:-foo}
       - PUBLIC_KEY_FILE=/pub_key/id_rsa.pub # ssh public key in container

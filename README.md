@@ -25,7 +25,7 @@ via http rather than ssh, and we provide a container specific way to query the
 status. This can be done using `scenario.state.check_progress()` which will
 return some output in the following form.
 
-```json
+```
 {'errors': [],
  'output': ['Validation complete!',
   'Launching scenario with parameters:',

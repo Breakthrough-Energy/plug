@@ -12,7 +12,7 @@ services:
     tty: true        # docker run -t
     volumes:
       - scenario_data:/mnt/bes/pcm
-      - ../fs/raw:/mnt/bes/pcm/raw
+      - ../fs/raw:/mnt/bes/pcm/raw:ro
     environment:
       - BE_SERVER_ADDRESS=reisejl
       - DEPLOYMENT_MODE=1
@@ -26,7 +26,7 @@ services:
       - "80:5000"
     volumes:
       - scenario_data:/mnt/bes/pcm
-      - ../fs/raw:/mnt/bes/pcm/raw
+      - ../fs/raw:/mnt/bes/pcm/raw:ro
       - ../gurobi.lic:/usr/share/gurobi_license/gurobi.lic
 volumes:
   scenario_data:
