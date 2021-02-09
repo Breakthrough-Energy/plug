@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  powersimdata:
+    container_name: powersimdata
+    hostname: powersimdata
+    build:
+      context: ../../PowerSimData
+    image: powersimdata:latest
+    entrypoint: bash
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+      - scenario_data:/mnt/bes/pcm
+      - ../rootdir/raw:/mnt/bes/pcm/raw:ro
+    environment:
+      - BE_SERVER_ADDRESS=reisejl
+      - DEPLOYMENT_MODE=1
+  reisejl:
+    container_name: reisejl
+    hostname: reisejl
+    build:
+      context: ../../REISE.jl
+    image: reisejl:latest
+    ports:
+      - "80:5000"
+    volumes:
+      - scenario_data:/mnt/bes/pcm
+      - ../rootdir/raw:/mnt/bes/pcm/raw:ro
+      - ../gurobi.lic:/usr/share/gurobi_license/gurobi.lic
+volumes:
+  scenario_data:

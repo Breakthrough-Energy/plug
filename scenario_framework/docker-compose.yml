@@ -6,35 +6,27 @@ services:
     hostname: scenario_client
     build:
       context: ../../PowerSimData
-    environment: 
-      - BE_SERVER_USER=${BE_SERVER_USER}
-      - BE_SERVER_ADDRESS=scenario_server
-      - BE_SERVER_SSH_PORT=2222
+    env_file:
+      - client.env
     image: powersimdata:latest
-    networks:
-      - cemnet
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     volumes:
-      - cemdata:/mnt/bes/pcm
-      - $PWD/ssh_github_action/:/root/.ssh
-      - $PWD/tests:/app/tests
+      - scenario_data:/mnt/bes/pcm
+      - ./ssh:/root/.ssh
+      - ./tests:/app/tests
   scenario_server:
     container_name: scenario_server
     hostname: scenario_server
     build:
-      context: .
+      context: ..
+      dockerfile: scenario_framework/Dockerfile
     image: scenario_server:latest
-    networks:
-      - cemnet
     tty: true
     volumes:
-      - $PWD/ssh_github_action/id_rsa.pub:/pub_key/id_rsa.pub:ro # path to ssh public key
-    environment:
-      - USER_NAME=${BE_SERVER_USER}
-      - PUBLIC_KEY_FILE=/pub_key/id_rsa.pub # ssh public key in container
-      - SUDO_ACCESS=false
-      - PASSWORD_ACCESS=false
+      - ./ssh/id_rsa.pub:/pub_key/id_rsa.pub:ro # path to ssh public key
+    env_file:
+      - server.env
     restart: "unless-stopped"
   # reisejl:
   #   container_name: reisejl
@@ -42,15 +34,10 @@ services:
   #   build:
   #     context: ../../REISE.jl
   #   image: reisejl:latest
-  #   networks:
-  #     - cemnet
   #   ports:
   #     - "80:5000"
   #   volumes:
-  #     - cemdata:/mnt/bes/pcm
-  #     - $PWD/GUROBI.LIC:/usr/share/gurobi_license
-
-networks:
-  cemnet:
+  #     - scenario_data:/mnt/bes/pcm
+  #     - ../gurobi.lic:/usr/share/gurobi_license/gurobi.lic
 volumes:
-  cemdata:
+  scenario_data:
