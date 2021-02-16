@@ -1,5 +1,5 @@
 # plug
-PortabLe infrastUrcture for Grid modelling
+PortabLe infrastrUcture for Grid modeling
 
 
 ### How to use
