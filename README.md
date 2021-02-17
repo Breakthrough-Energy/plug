@@ -4,13 +4,14 @@ PortabLe infrastrUcture for Grid modeling
 
 ### How to use
 To run the containerized framework, the only prerequisite is to have a gurobi
-license at the root of the repository, called `gurobi.lic`, and the following directory structure
+license called `gurobi.lic` (as shown below) and the following directory structure
 obtained by cloning the three repositories into the same place (required for building the images).
 
 
 ```bash
     .
     ├── plug
+        ├── gurobi_license/gurobi.lic
     ├── PowerSimData
     └── REISE.jl
 ```
