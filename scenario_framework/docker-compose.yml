@@ -38,6 +38,6 @@ services:
   #     - "80:5000"
   #   volumes:
   #     - scenario_data:/mnt/bes/pcm
-  #     - ../gurobi.lic:/usr/share/gurobi_license/gurobi.lic
+      # - ../gurobi_license:/usr/share/gurobi_license
 volumes:
   scenario_data:

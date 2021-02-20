@@ -27,6 +27,6 @@ services:
     volumes:
       - scenario_data:/mnt/bes/pcm
       - ../rootdir/raw:/mnt/bes/pcm/raw:ro
-      - ../gurobi.lic:/usr/share/gurobi_license/gurobi.lic
+      - ../gurobi_license:/usr/share/gurobi_license
 volumes:
   scenario_data:
