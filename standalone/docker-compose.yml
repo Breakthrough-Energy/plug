@@ -13,6 +13,7 @@ services:
     volumes:
       - scenario_data:/mnt/bes/pcm
       - ../rootdir/raw:/mnt/bes/pcm/raw:ro
+      - ./:/PowerSimData/plug
     environment:
       - BE_SERVER_ADDRESS=reisejl
       - DEPLOYMENT_MODE=1
