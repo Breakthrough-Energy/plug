@@ -17,6 +17,23 @@ def test_reise_jl_container_up():
     assert response == 0
 
 
+@pytest.fixture
+def scenario():
+    scenario = Scenario("")
+
+    scenario.state.set_builder(grid_model="usa_tamu", interconnect="Texas")
+    scenario.state.builder.set_name(
+        "test" + "_" + str(uuid.uuid1()), "dummy" + "_" + str(uuid.uuid1())
+    )
+    scenario.state.builder.set_time("2016-08-01 00:00:00", "2016-08-31 23:00:00", "24H")
+
+    scenario.state.builder.set_base_profile("demand", "vJan2021")
+    scenario.state.builder.set_base_profile("hydro", "vJan2021")
+    scenario.state.builder.set_base_profile("solar", "vJan2021")
+    scenario.state.builder.set_base_profile("wind", "vJan2021")
+    return scenario
+
+
 @pytest.mark.integration
 @pytest.mark.ssh
 def test_scenario_1712_analysis():
@@ -55,20 +72,7 @@ def test_scenario_1712_analysis():
 
 @pytest.mark.integration
 @pytest.mark.ssh
-def test_create_base_grid_Texas_scenario():
-    scenario = Scenario("")
-
-    scenario.state.set_builder(["Texas"])
-    scenario.state.builder.set_name(
-        "test" + "_" + str(uuid.uuid1()), "dummy" + "_" + str(uuid.uuid1())
-    )
-    scenario.state.builder.set_time("2016-08-01 00:00:00", "2016-08-31 23:00:00", "24H")
-
-    scenario.state.builder.set_base_profile("demand", "ercot")
-    scenario.state.builder.set_base_profile("hydro", "v2")
-    scenario.state.builder.set_base_profile("solar", "v4.1")
-    scenario.state.builder.set_base_profile("wind", "v5.1")
-
+def test_create_base_grid_Texas_scenario(scenario):
     scenario.state.create_scenario()
     scenario.state.prepare_simulation_input()
 
@@ -77,20 +81,7 @@ def test_create_base_grid_Texas_scenario():
 
 @pytest.mark.integration
 @pytest.mark.ssh
-def test_create_and_upload_Texas_scenario():
-    scenario = Scenario("")
-
-    scenario.state.set_builder(["Texas"])
-    scenario.state.builder.set_name(
-        "test" + "_" + str(uuid.uuid1()), "dummy" + "_" + str(uuid.uuid1())
-    )
-    scenario.state.builder.set_time("2016-08-01 00:00:00", "2016-08-31 23:00:00", "24H")
-
-    scenario.state.builder.set_base_profile("demand", "ercot")
-    scenario.state.builder.set_base_profile("hydro", "v2")
-    scenario.state.builder.set_base_profile("solar", "v4.1")
-    scenario.state.builder.set_base_profile("wind", "v5.1")
-
+def test_create_and_upload_Texas_scenario(scenario):
     scenario.state.builder.change_table.scale_plant_capacity(
         "solar", zone_name={"Far West": 5, "West": 2.5}
     )
