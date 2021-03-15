@@ -72,7 +72,7 @@ def test_scenario_1712_analysis():
 
 @pytest.mark.integration
 @pytest.mark.ssh
-def test_create_base_grid_Texas_scenario(scenario):
+def test_create_base_grid_texas_scenario(scenario):
     scenario.state.create_scenario()
     scenario.state.prepare_simulation_input()
 
@@ -81,7 +81,7 @@ def test_create_base_grid_Texas_scenario(scenario):
 
 @pytest.mark.integration
 @pytest.mark.ssh
-def test_create_and_upload_Texas_scenario(scenario):
+def test_create_and_upload_texas_scenario(scenario):
     scenario.state.builder.change_table.scale_plant_capacity(
         "solar", zone_name={"Far West": 5, "West": 2.5}
     )
