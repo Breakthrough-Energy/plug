@@ -1,3 +1,2 @@
-id,plan,name,state,interconnect,base_demand,base_hydro,base_solar,base_wind,change_table,start_date,end_date,interval,engine,runtime,infeasibilities
-1712,test,new_bus,analyze,Texas,ercot,v2,v4.1,v5.1,Yes,2016-01-01 00:00:00,2016-01-03 23:00:00,24H,REISE.jl,0:01,
-5000,
+id,plan,name,state,grid_model,interconnect,base_demand,base_hydro,base_solar,base_wind,change_table,start_date,end_date,interval,engine,runtime,infeasibilities
+1712,test,new_bus,analyze,usa_tamu,Texas,ercot,v2,v4.1,v5.1,Yes,2016-01-01 00:00:00,2016-01-03 23:00:00,24H,REISE.jl,0:01,
