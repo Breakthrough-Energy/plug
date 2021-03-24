@@ -12,7 +12,7 @@ services:
     tty: true        # docker run -t
     volumes:
       - scenario_data:/mnt/bes/pcm
-      - ../rootdir/raw:/mnt/bes/pcm/raw:ro
+      - ../rootdir/raw:/mnt/bes/pcm/raw
       - ./:/PowerSimData/plug
     environment:
       - BE_SERVER_ADDRESS=reisejl
@@ -27,7 +27,7 @@ services:
       - "80:5000"
     volumes:
       - scenario_data:/mnt/bes/pcm
-      - ../rootdir/raw:/mnt/bes/pcm/raw:ro
+      - ../rootdir/raw:/mnt/bes/pcm/raw
       - ../gurobi_license:/usr/share/gurobi_license
 volumes:
   scenario_data:
