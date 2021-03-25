@@ -30,9 +30,9 @@ about how to run a simulation, or try the commands in `demo.py` for a simple exa
 The usage within the containerized setup is almost identical to what is
 presented in the PowerSimData repo, but there are some small differences. 
 
-1) When calling `scenario.state.launch_simulation()`, the process is launched
+1) When calling `scenario.launch_simulation()`, the process is launched
 via http rather than ssh, and we provide a container specific way to query the
-status. This can be done using `scenario.state.check_progress()` which will
+status. This can be done using `scenario.check_progress()` which will
 return some output in the following form.
 
 ```
@@ -48,7 +48,7 @@ Note that the `errors/output` fields correspond to lines of
 `stderr/stdout`, respectively.
 
 2) Once the simulation is complete, the results are extracted automatically, so
-there is no need to call `scenario.state.extract_simulation_output()` (although
+there is no need to call `scenario.extract_simulation_output()` (although
 doing so will simply print a warning). The data can be accessed from the
 `Analyze` state within the container, but if you have a use case that is not
 yet supported, the data can be detached from docker, which we describe below.

@@ -1,22 +1,22 @@
 from uuid import uuid4
 
-from powersimdata.scenario.scenario import Scenario
+from powersimdata import Scenario
 
-scenario = Scenario("")
+scenario = Scenario()
 print(scenario.state.name)
 
-scenario.state.set_builder(interconnect="Texas")
+scenario.set_grid(interconnect="Texas")
 
-scenario.state.builder.set_name("test", "comp_" + str(uuid4()))
-scenario.state.builder.set_time("2016-01-01 00:00:00", "2016-01-10 23:00:00", "24H")
+scenario.set_name("test", "comp_" + str(uuid4()))
+scenario.set_time("2016-01-01 00:00:00", "2016-01-01 03:00:00", "1H")
 
-scenario.state.builder.set_base_profile("demand", "vJan2021")
-scenario.state.builder.set_base_profile("hydro", "vJan2021")
-scenario.state.builder.set_base_profile("solar", "vJan2021")
-scenario.state.builder.set_base_profile("wind", "vJan2021")
+scenario.set_base_profile("demand", "vJan2021")
+scenario.set_base_profile("hydro", "vJan2021")
+scenario.set_base_profile("solar", "vJan2021")
+scenario.set_base_profile("wind", "vJan2021")
 
 
-scenario.state.builder.change_table.ct = {
+scenario.change_table.ct = {
     "ng": {
         "zone_id": {
             301: 0.9335236224644795,
@@ -204,12 +204,13 @@ scenario.state.builder.change_table.ct = {
     },
 }
 
-grid = scenario.state.get_grid()
-ct = scenario.state.get_ct()
+grid = scenario.get_grid()
+ct = scenario.get_ct()
 
-scenario.state.print_scenario_info()
-scenario.state.create_scenario()
+scenario.print_scenario_info()
+scenario.create_scenario()
 
-scenario.state.prepare_simulation_input()
+scenario.prepare_simulation_input()
 
-resp = scenario.state.launch_simulation()
+resp = scenario.launch_simulation(solver="glpk")
+scenario.check_progress()
