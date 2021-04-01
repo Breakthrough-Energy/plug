@@ -8,7 +8,7 @@ services:
       context: ../../PowerSimData
     env_file:
       - client.env
-    image: powersimdata:latest
+    image: ghcr.io/breakthrough-energy/powersimdata:latest
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     volumes:
@@ -33,7 +33,7 @@ services:
   #   hostname: reisejl
   #   build:
   #     context: ../../REISE.jl
-  #   image: reisejl:latest
+  #   image: ghcr.io/breakthrough-energy/reisejl:latest
   #   ports:
   #     - "80:5000"
   #   volumes:
