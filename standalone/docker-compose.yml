@@ -6,7 +6,7 @@ services:
     hostname: powersimdata
     build:
       context: ../../PowerSimData
-    image: powersimdata:latest
+    image: ghcr.io/breakthrough-energy/powersimdata:latest
     entrypoint: bash
     stdin_open: true # docker run -i
     tty: true        # docker run -t
@@ -22,7 +22,7 @@ services:
     hostname: reisejl
     build:
       context: ../../REISE.jl
-    image: reisejl:latest
+    image: ghcr.io/breakthrough-energy/reisejl:latest
     ports:
       - "80:5000"
     volumes:

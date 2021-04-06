@@ -4,9 +4,11 @@ PortabLe infrastrUcture for Grid modeling
 
 ### How to use
 To run the containerized framework, the only prerequisite is to have a gurobi
-license called `gurobi.lic` (as shown below) and the following directory structure
-obtained by cloning the three repositories into the same place (required for building the images).
+license called `gurobi.lic` in the `gurobi_license` folder as shown below. The required
+images will be downloaded automatically from our [container registry](https://github.com/orgs/Breakthrough-Energy/packages).
 
+Optionally, if you want to build any of the docker images locally (e.g. for development purposes),
+you should use the following directory structure so relative paths will work.
 
 ```bash
     .
