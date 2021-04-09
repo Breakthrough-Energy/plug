@@ -11,7 +11,7 @@ In them, there is a quick tour of the framework, going through the following sta
 ### Dataset
 
 Data for the notebooks is provided in a zip file, available [here][training_data].
-It is fairly large (9.1G) so allow some time for this.
+It is fairly large (5.2G) so allow some time for this.
 
 To use this data within the containerized environment, make sure it is located within
 the repository, and extract the files like so:
