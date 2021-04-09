@@ -11,7 +11,7 @@ services:
     ports:
       - "10000:10000"
     volumes:
-      - ../${DATA_PKG}:/mnt/bes/pcm
+      - ../training:/mnt/bes/pcm
       - ./:/plug
     environment:
       - BE_SERVER_ADDRESS=reisejl
@@ -23,5 +23,5 @@ services:
     ports:
       - "80:5000"
     volumes:
-      - ../${DATA_PKG}:/mnt/bes/pcm
+      - ../training:/mnt/bes/pcm
       - ../gurobi_license:/usr/share/gurobi_license
