@@ -8,6 +8,18 @@ In them, there is a quick tour of the framework, going through the following sta
 3. More in depth analysis of the subsequent results
 4. Visualize the results using PostREISE
 
+### Installation
+First clone the repository as follow
+```
+git clone https://github.com/Breakthrough-Energy/plug.git
+```
+
+Currently, the notebooks are located in the `jon/training` branch, so switch to that
+using (ensure you are in the `plug` directory first)
+```
+git checkout origin/jon/training
+```
+
 ### Dataset
 
 Data for the notebooks is provided in a zip file, available [here][training_data].
@@ -31,7 +43,12 @@ Expand-Archive -Path training.zip -DestinationPath .
 
 ### Running the code
 
-Navigate to the `standalone/` folder and run the following.
+Navigate to the `standalone/` folder. To make ensure your images are up to date, first run the following
+
+```
+docker-compose -f training.yml pull
+```
+Then to run the containers
 
 ```
 docker-compose -f training.yml up
