@@ -1,27 +1,26 @@
 version: '3.7'
 
 services:
-  powersimdata:
-    container_name: powersimdata
-    hostname: powersimdata
-    build:
-      context: ../../PowerSimData
-    image: ghcr.io/breakthrough-energy/powersimdata:latest
-    entrypoint: bash
+  client:
+    container_name: client
+    hostname: client
+    image: ghcr.io/breakthrough-energy/postreise:latest
     stdin_open: true # docker run -i
     tty: true        # docker run -t
+    working_dir: /plug
+    entrypoint: bash
     volumes:
       - scenario_data:/mnt/bes/pcm
       - ../rootdir/raw:/mnt/bes/pcm/raw
-      - ./:/PowerSimData/plug
+      - ./:/plug
+    ports:
+      - "10000:10000"
     environment:
       - BE_SERVER_ADDRESS=reisejl
       - DEPLOYMENT_MODE=1
   reisejl:
     container_name: reisejl
     hostname: reisejl
-    build:
-      context: ../../REISE.jl
     image: ghcr.io/breakthrough-energy/reisejl:latest
     ports:
       - "80:5000"
