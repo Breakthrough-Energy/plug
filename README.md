@@ -1,7 +1,7 @@
 # plug
 PortabLe infrastrUcture for Grid modeling
 
-### Prerequisites
+## Prerequisites
 To use *plug* you'll need to have docker installed - visit their [website](https://docs.docker.com/get-docker/)
 for details.
 
@@ -11,7 +11,7 @@ license file called `gurobi.lic` located at `plug/gurobi_license/gurobi.lic`
 *NOTE*: certain license types are not supported at the moment. 
 
 
-### How to use
+## How to use
 
 We describe the workflow for running a standalone installation on a single
 computer. To get started, run `cd standalone` in your shell, followed by
@@ -61,7 +61,7 @@ doing so will simply print a warning). The data can be accessed from the
 `Analyze` state within the container, but if you have a use case that is not
 yet supported, the data can be detached from docker, which we describe below.
 
-### Extracting data
+## Extracting data
 Currently, the simplest way to access simulation output is by copying the
 results from the container. To copy the full volume as-is, use the following:
 
@@ -75,7 +75,7 @@ Optionally, to snapshot the results to a tar archive, run
 docker cp client:/mnt/bes/pcm - > FILENAME.tar
 ```
 
-### Local development
+## Local development
 If you want to build any of the docker images locally you should use the following 
 directory structure so relative paths will work.
 
@@ -93,7 +93,7 @@ for example
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
 
-### Client/server architecture
+## Client/server architecture
 
 The contents of the `scenario_framework` folder are provided to mirror the client server
 architecture used internally and enable reproducible testing in that
@@ -110,7 +110,7 @@ docker-compose up -d
 docker exec scenario_client bash -c 'pytest -m "not db"'
 ```
 
-In addition to the test suite from powersimdata, this will run the tests
+In addition to the test suite from PowerSimData, this will run the tests
 provided here, which demonstrate typical user workflows. 
 
 [PowerSimData]: https://github.com/Breakthrough-Energy/PowerSimData
