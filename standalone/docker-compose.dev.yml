@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  powersimdata: # included only for building postreise base image
+    build:
+      context: ../../PowerSimData
+    image: ghcr.io/breakthrough-energy/powersimdata:latest
+  client:
+    build:
+      context: ../../PostREISE
+    depends_on:
+      - powersimdata
+  reisejl:
+    build:
+      context: ../../REISE.jl
