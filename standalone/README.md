@@ -25,8 +25,12 @@ for details.
 
 ### Dataset
 
-Data for the notebooks is provided in a zip file, available [here][training_data].
-It is fairly large (5.2G) so allow some time for this.
+One benefit of using *plug* is that arbitrary sets of scenario data can be prepared,
+and attached to the container(s), allowing one to "swap out" one data set for another.
+
+One such example is available [here][training_data] (size is 5.2G)
+
+**NOTE** - data for the training session on Wed, 4/28 is available [here][miso_training] (size is 6.4G)
 
 To use this data within the containerized environment, make sure it is located within
 the repository, and extract the files like so:
@@ -44,9 +48,17 @@ On unix systems, `unzip training.zip` should work. For windows powershell:
 Expand-Archive -Path training.zip -DestinationPath .
 ```
 
+If you need to switch to a new dataset, this can be done by:
+- stopping the containers (`Ctrl-c` in the terminal running docker-compose)
+- remove the containers - `docker container prune`
+- rename the current training folder
+- extract the new dataset as above (destination folder should be called `training` regardless of the zip file name)
+- restart the containers as described below.
+
 ### Running the code
 
 Navigate to the `standalone/` folder. To make ensure your images are up to date, first run the following
+command (or equivalent per image, see [postreise](https://github.com/orgs/Breakthrough-Energy/packages/container/package/postreise) example)
 
 ```
 docker-compose -f training.yml pull
@@ -73,3 +85,4 @@ and python environment for interacting with the framework.
 
 
 [training_data]: https://bescienceswebsite.blob.core.windows.net/training/training.zip
+[miso_training]: https://bescienceswebsite.blob.core.windows.net/training/miso.zip
