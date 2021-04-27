@@ -5,7 +5,7 @@ services:
     image: ghcr.io/breakthrough-energy/postreise:latest
     stdin_open: true # docker run -i
     tty: true        # docker run -t
-    entrypoint: ./entrypoint.sh
+    # entrypoint: ./entrypoint.sh
     working_dir: /plug
     ports:
       - "10000:10000"
