@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   powersimdata: # included only for building postreise base image
     build:
