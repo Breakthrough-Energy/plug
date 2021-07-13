@@ -1,5 +1,3 @@
-version: '3.7'
-
 services:
   client:
     container_name: client
@@ -22,8 +20,6 @@ services:
     container_name: reisejl
     hostname: reisejl
     image: ghcr.io/breakthrough-energy/reisejl:latest
-    ports:
-      - "80:5000"
     volumes:
       - scenario_data:/mnt/bes/pcm
       - ../rootdir/raw:/mnt/bes/pcm/raw
