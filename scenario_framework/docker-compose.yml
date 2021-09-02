@@ -1,12 +1,12 @@
 services:
-  powersimdata:
+  scenario_client:
     container_name: scenario_client
     hostname: scenario_client
     build:
-      context: ../../PowerSimData
+      context: ../build
     env_file:
       - client.env
-    image: ghcr.io/breakthrough-energy/powersimdata:latest
+    image: ghcr.io/breakthrough-energy/postreise:latest
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     volumes:

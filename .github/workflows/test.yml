@@ -1,6 +1,7 @@
 name: Integration
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -10,30 +11,15 @@ jobs:
 
     name: End to end tests
     steps:
-      - name: Checkout plug
-        uses: actions/checkout@v2
-        with:
-          path: plug
+      - uses: actions/checkout@v2
 
-      - name: Checkout PowerSimData
-        uses: actions/checkout@v2
-        with:
-          repository: Breakthrough-Energy/PowerSimData
-          path: PowerSimData
-
-      # - name: Checkout REISE.jl
-      #   uses: actions/checkout@v2
-      #   with:
-      #     repository: Breakthrough-Energy/REISE.jl
-      #     path: REISE.jl
-
-      - run: docker-compose build
-        working-directory: plug/scenario_framework
+      - run: docker-compose build scenario_server
+        working-directory: scenario_framework
 
       - name: Start containers
         run: |
           docker-compose up -d
           sleep 10
-        working-directory: plug/scenario_framework
+        working-directory: scenario_framework
 
       - run: docker exec scenario_client bash -c 'pytest -m "not db"'
