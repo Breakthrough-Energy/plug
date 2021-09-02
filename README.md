@@ -82,8 +82,6 @@ directory structure so relative paths will work.
 ```bash
     .
     ├── plug
-    ├── PowerSimData
-    ├── PostREISE
     └── REISE.jl
 ```
 
