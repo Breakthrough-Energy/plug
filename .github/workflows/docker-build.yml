@@ -2,6 +2,11 @@ name: Publish docker image
 
 on: 
   workflow_dispatch:
+    inputs:
+      imageTag:
+        description: 'Tag to push'
+        required: false
+        default: 'latest'
 
 jobs:
   push_to_registry:
@@ -21,4 +26,5 @@ jobs:
         with:
           push: true
           context: build
-          tags: ghcr.io/breakthrough-energy/postreise:latest
+          build-args: version=${{ github.event.inputs.imageTag }}
+          tags: ghcr.io/breakthrough-energy/postreise:${{ github.event.inputs.imageTag }}

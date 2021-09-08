@@ -1,4 +1,5 @@
 FROM python:3.8.3
+ARG version=latest
 
 RUN apt-get update
 RUN ln -s /mnt/bes/pcm $HOME/ScenarioData
@@ -12,10 +13,8 @@ WORKDIR /PowerSimData
 RUN mkdir -p /mnt/bes/pcm
 RUN cp -r powersimdata/utility/templates /mnt/bes/pcm/
 
-WORKDIR /PostREISE
-RUN pipenv sync --dev --system;
-RUN pip install .
-RUN pip install ../PowerSimData
+COPY install.sh .
+RUN ./install.sh $version
 
 WORKDIR /app
 RUN rm -rf /PowerSimData

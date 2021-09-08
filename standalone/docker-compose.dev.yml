@@ -1,5 +1,6 @@
 services:
   client:
+    image: ghcr.io/breakthrough-energy/postreise:latest
     build:
       context: ../build
   reisejl:
