@@ -11,7 +11,7 @@ RUN git clone --depth 1 https://github.com/Breakthrough-Energy/PostREISE
 
 WORKDIR /PowerSimData
 RUN mkdir -p /mnt/bes/pcm
-RUN cp -r powersimdata/utility/templates /mnt/bes/pcm/
+RUN cp powersimdata/utility/templates/*.csv /mnt/bes/pcm/
 
 COPY install.sh .
 RUN ./install.sh $version
