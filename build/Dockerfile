@@ -14,19 +14,19 @@ ONBUILD RUN git clone --depth 1 https://github.com/Breakthrough-Energy/PowerSimD
 
 FROM base as build_debug
 ONBUILD COPY PowerSimData .
-ONBUILD COPY PostREISE .
+# ONBUILD COPY PostREISE .
 
 FROM build_$build_env
 
 WORKDIR /PowerSimData
-RUN mkdir -p /mnt/bes/pcm
+# RUN mkdir -p /mnt/bes/pcm
 RUN cp powersimdata/utility/templates/*.csv /mnt/bes/pcm/
 
-COPY install.sh .
-RUN ./install.sh $version
+# COPY install.sh .
+# RUN ./install.sh $version
 
 WORKDIR /app
 RUN rm -rf /PowerSimData
-RUN rm -rf /PostREISE
+# RUN rm -rf /PostREISE
 
 CMD ["jupyter", "lab", "--port=10000", "--no-browser", "--ip=0.0.0.0", "--allow-root"]

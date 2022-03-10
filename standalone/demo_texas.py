@@ -1,6 +1,7 @@
 from uuid import uuid4
 
 from powersimdata import Scenario
+from powersimdata.scenario.delete import Delete
 
 scenario = Scenario()
 print(scenario.state.name)

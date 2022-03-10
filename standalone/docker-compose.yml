@@ -2,7 +2,7 @@ services:
   client:
     container_name: client
     hostname: client
-    image: ghcr.io/breakthrough-energy/postreise:stable
+    image: powersimdata
     stdin_open: true # docker run -i
     tty: true        # docker run -t
     working_dir: /plug
@@ -11,6 +11,7 @@ services:
       - scenario_data:/mnt/bes/pcm
       - ../rootdir/raw:/mnt/bes/pcm/raw
       - ./:/plug
+      - ~/code/PowerSimData:/PowerSimData
     ports:
       - "10000:10000"
     environment:
