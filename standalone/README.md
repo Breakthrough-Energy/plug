@@ -20,6 +20,9 @@ using (ensure you are in the `plug` directory first)
 git checkout origin/jen/training
 ```
 
+To use *plug* you'll need to have docker installed - visit their [website](https://docs.docker.com/get-docker/)
+for details.
+
 ### Dataset
 
 Data for the notebooks is provided in a zip file, available [here][training_data].
