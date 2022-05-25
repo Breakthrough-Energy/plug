@@ -84,5 +84,5 @@ Paste that into your browser and you will have access to all the notebooks, data
 and python environment for interacting with the framework.
 
 
-[training_data]: https://bescienceswebsite.blob.core.windows.net/training/training.zip
-[miso_training]: https://bescienceswebsite.blob.core.windows.net/training/miso.zip
+[training_data]: https://besciences.blob.core.windows.net/snapshots/training.zip
+[miso_training]: https://besciences.blob.core.windows.net/snapshots/miso.zip
