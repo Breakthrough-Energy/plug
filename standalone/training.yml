@@ -1,0 +1,23 @@
+services:
+  client:
+    container_name: client
+    hostname: client
+    image: ghcr.io/breakthrough-energy/postreise:latest
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    working_dir: /plug
+    ports:
+      - "10000:10000"
+    volumes:
+      - ../${DATA_PKG}:/mnt/bes/pcm
+      - ./:/plug
+    environment:
+      - BE_SERVER_ADDRESS=reisejl
+      - DEPLOYMENT_MODE=1
+  reisejl:
+    container_name: reisejl
+    hostname: reisejl
+    image: ghcr.io/breakthrough-energy/reisejl:latest
+    volumes:
+      - ../${DATA_PKG}:/mnt/bes/pcm
+      - ../gurobi_license:/usr/share/gurobi_license
