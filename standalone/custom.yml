@@ -1,0 +1,13 @@
+services:
+  client:
+    image: powersimdata
+    working_dir: /PowerSimData
+    build:
+      context: ../../PowerSimData
+    volumes:
+      - ../../PowerSimData:/PowerSimData
+  reisejl:
+    build:
+      context: ../../REISE.jl
+    volumes:
+      - ../../REISE.jl/pyreisejl:/app/pyreisejl
