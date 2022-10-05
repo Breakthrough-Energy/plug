@@ -7,7 +7,9 @@ services:
     volumes:
       - ../../PowerSimData:/PowerSimData
   reisejl:
+    image: reisejl:delegate
     build:
       context: ../../REISE.jl
     volumes:
       - ../../REISE.jl/pyreisejl:/app/pyreisejl
+      # - ../../REISE.jl:/app
