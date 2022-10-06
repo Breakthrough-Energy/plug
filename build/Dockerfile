@@ -14,6 +14,7 @@ RUN git clone --single-branch --depth 1 --branch $branch \
 
 WORKDIR /PowerSimData
 RUN mkdir -p /mnt/bes/pcm
+RUN mkdir -p /mnt/bes/pcm/data/input
 RUN cp powersimdata/utility/templates/*.csv /mnt/bes/pcm/
 
 COPY install.sh .

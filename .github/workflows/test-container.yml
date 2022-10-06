@@ -25,7 +25,7 @@ jobs:
         run: |
           docker-compose up -d
           sleep 10
-        working-directory: standalone
+        working-directory: tests
 
       - run: docker exec test_client bash -c 'pip install pytest'
       - run: docker exec test_client bash -c 'pytest -s'
