@@ -8,7 +8,7 @@ def create_default():
     scenario = Scenario()
     scenario.set_grid(interconnect="Texas")
     scenario.set_name("test", "comp_" + str(uuid4()))
-    scenario.set_time("2016-01-01 00:00:00", "2016-01-01 03:00:00", "1H")
+    scenario.set_time("2016-01-01 00:00:00", "2016-01-01 03:00:00", "2H")
 
     scenario.set_base_profile("demand", "vJan2021")
     scenario.set_base_profile("hydro", "vJan2021")
