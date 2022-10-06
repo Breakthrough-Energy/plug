@@ -15,6 +15,7 @@ def create_default():
     scenario.set_base_profile("solar", "vJan2021")
     scenario.set_base_profile("wind", "vJan2021")
     scenario.print_scenario_info()
+    return scenario
 
 
 def launch(scenario):
