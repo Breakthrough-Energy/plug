@@ -1,13 +1,16 @@
 FROM python:3.8.3
 ARG version=latest
+ARG branch=develop
 
 RUN apt-get update
 RUN ln -s /mnt/bes/pcm $HOME/ScenarioData
 
 RUN pip install -U pip pipenv ipython jupyterlab ipywidgets
 
-RUN git clone --depth 1 https://github.com/Breakthrough-Energy/PowerSimData
-RUN git clone --depth 1 https://github.com/Breakthrough-Energy/PostREISE
+RUN git clone --single-branch --depth 1 --branch $branch \
+    https://github.com/Breakthrough-Energy/PowerSimData
+RUN git clone --single-branch --depth 1 --branch $branch \
+    https://github.com/Breakthrough-Energy/PostREISE
 
 WORKDIR /PowerSimData
 RUN mkdir -p /mnt/bes/pcm
