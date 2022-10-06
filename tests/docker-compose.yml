@@ -8,7 +8,7 @@ services:
     working_dir: /tests
     entrypoint: bash
     volumes:
-      - scenario_data:/mnt/bes/pcm
+      - test_data:/mnt/bes/pcm
       - ../rootdir/raw:/mnt/bes/pcm/raw
       - ./:/tests
     environment:
@@ -19,8 +19,8 @@ services:
     hostname: test_reisejl
     image: ghcr.io/breakthrough-energy/reisejl:latest
     volumes:
-      - scenario_data:/mnt/bes/pcm
+      - test_data:/mnt/bes/pcm
       - ../rootdir/raw:/mnt/bes/pcm/raw
       - ../gurobi_license:/usr/share/gurobi_license
 volumes:
-  scenario_data:
+  test_data:
