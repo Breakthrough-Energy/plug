@@ -1,0 +1,26 @@
+services:
+  client:
+    container_name: test_client
+    hostname: test_client
+    image: plug
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    working_dir: /tests
+    entrypoint: bash
+    volumes:
+      - test_data:/mnt/bes/pcm
+      - ../rootdir/raw:/mnt/bes/pcm/raw
+      - ./:/tests
+    environment:
+      - BE_SERVER_ADDRESS=reisejl
+      - DEPLOYMENT_MODE=1
+  reisejl:
+    container_name: test_reisejl
+    hostname: test_reisejl
+    image: ghcr.io/breakthrough-energy/reisejl:latest
+    volumes:
+      - test_data:/mnt/bes/pcm
+      - ../rootdir/raw:/mnt/bes/pcm/raw
+      - ../gurobi_license:/usr/share/gurobi_license
+volumes:
+  test_data:

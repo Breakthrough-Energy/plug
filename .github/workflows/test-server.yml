@@ -1,17 +1,17 @@
-name: Integration
+name: Test client server
 
 on:
   workflow_dispatch:
 
 jobs:
-  build:
+  test:
     if: "!contains(github.event.head_commit.message, 'skip_ci')"
 
     runs-on: ubuntu-latest
 
     name: End to end tests
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - run: docker-compose build scenario_server
         working-directory: scenario_framework
