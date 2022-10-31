@@ -1,0 +1,26 @@
+version: "3"
+services:
+  psd:
+    container_name: web
+    hostname: web
+    image: web
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    volumes:
+      - scenario_data:/mnt/bes/pcm
+      - ../rootdir/raw:/mnt/bes/pcm/raw
+    ports:
+      - "5000:5000"
+    environment:
+      - BE_SERVER_ADDRESS=reisejl
+      - DEPLOYMENT_MODE=1
+  # reisejl:
+  #   container_name: reisejl
+  #   hostname: reisejl
+  #   image: ghcr.io/breakthrough-energy/reisejl:latest
+  #   volumes:
+  #     - scenario_data:/mnt/bes/pcm
+  #     - ../rootdir/raw:/mnt/bes/pcm/raw
+  #     - ../gurobi_license:/usr/share/gurobi_license
+volumes:
+  scenario_data:
